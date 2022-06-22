@@ -17,4 +17,5 @@ jspm_packages
 .idea
 .sencha
 .build
+dist
 node_modules
