@@ -1,5 +1,5 @@
 var path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -7,7 +7,7 @@ module.exports = {
     // bundle1: './src/e.js',
     // bundle2: './src/f.js'
   },
-  devtool: 'none',
+  devtool: 'source-map',
   output: {
     path: __dirname + '/dist',
     filename: '[name].[chunkhash:4].js',
@@ -19,7 +19,7 @@ module.exports = {
       Src: path.resolve(__dirname, 'src/')
     }
   },
-  // plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
       {
@@ -31,7 +31,15 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+
+    compress: true,
+    port: 9000
+  },
   // optimization: {
   //   splitChunks: {
   //     chunks: 'all',
